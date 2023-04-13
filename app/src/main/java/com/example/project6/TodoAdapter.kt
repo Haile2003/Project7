@@ -3,14 +3,18 @@ package com.example.project6
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 
 
-class TodoAdapter (var todos: List<Todo>) : RecyclerView.Adapter<TodoAdapter.TodoViewHolder>(){
+class TodoAdapter (val pokeList: MutableList<Pokemon>) : RecyclerView.Adapter<TodoAdapter.TodoViewHolder>(){
+    data class Pokemon(val pokeImage: String, val pokeName: String, val pokeWeight: String)
     inner class TodoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        val poke_name: TextView = itemView.findViewById(R.id.pokeName)
-        val poke_weight: TextView = itemView.findViewById(R.id.pokeWeight)
+        val pokeName: TextView = itemView.findViewById(R.id.pokeName)
+        val pokeWeight: TextView = itemView.findViewById(R.id.pokeWeight)
+        val pokeImage: ImageView = itemView.findViewById(R.id.pokeImage)
     }
 
 
@@ -20,12 +24,16 @@ class TodoAdapter (var todos: List<Todo>) : RecyclerView.Adapter<TodoAdapter.Tod
     }
 
     override fun onBindViewHolder(holder: TodoViewHolder, position: Int) {
-        val todo = todos[position]
-        holder.itemView.findViewById<TextView>(R.id.pokeName).text = todo.name
-        holder.itemView.findViewById<TextView>(R.id.pokeWeight).text = todo.weight
+        val todo = pokeList[position]
+        Glide.with(holder.itemView)
+            .load(todo.pokeImage)
+            .centerCrop()
+            .into(holder.pokeImage)
+        holder.pokeName.text = todo.pokeName
+        holder.pokeWeight.text = todo.pokeWeight
     }
 
     override fun getItemCount(): Int {
-        return todos.size
+        return pokeList.size
     }
 }
