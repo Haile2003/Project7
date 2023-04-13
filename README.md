@@ -10,7 +10,7 @@ Time spent: **8** hours spent in total
 
 **PokemonRandomize** is an android app that **Displays a scrollable list of Pokemons using Pokemon API**
 
-If I had to describe this project in three (3) emojis, they would be: **emojis here**
+If I had to describe this project in three (3) emojis, they would be: **❤️😊🐰**
 
 ## Application Features
 
